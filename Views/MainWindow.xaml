@@ -1,0 +1,42 @@
+﻿<Window x:Class="StarWarsApiApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="SWAPI" Height="650" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Grid Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="71*"/>
+                <ColumnDefinition Width="179*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="SWAPI" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Height="54" Width="116"/>
+            <Grid Grid.Column="1" Margin="30,30,30,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxLength="7" Width="150" Text="{Binding CurrentPath, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                <Button Grid.Column="1" Content="Find" FontSize="20" Margin="5" Command="{Binding FindCommand}"/>
+                <Button Grid.Column="2" Content="Save" FontSize="20" Margin="5" Command="{Binding SaveCommand}"/>
+                <Button Grid.Column="3" Content="History" FontSize="20" Margin="5" Command="{Binding HistoryCommand}"/>
+            </Grid>
+        </Grid>
+        <DataGrid Height="478" Margin="10" FontSize="18" ItemsSource="{Binding SWPeople}" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Height" Width="*" Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Mass" Width="*" Binding="{Binding Mass}"/>
+                <DataGridTextColumn Header="Gender" Width="*" Binding="{Binding Gender}"/>
+                <DataGridTextColumn Header="Birth Year" Width="*" Binding="{Binding Birth_Year}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </StackPanel>
+</Window>
